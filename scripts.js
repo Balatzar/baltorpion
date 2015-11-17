@@ -3,7 +3,6 @@
   var turn = true;
   var gridSize = Math.sqrt(td.length);
   var grid = [];
-  var winCondition = 3;
 
   for (var i = 0; i < td.length; i++) {
     td[i].addEventListener("click", function() {
@@ -57,8 +56,5 @@
       }
     }
   }
-
-  console.log(grid)
-
 
 })();
