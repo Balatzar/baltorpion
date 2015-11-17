@@ -1,5 +1,4 @@
 
-
 3.times do |x|
   3.times do |y|
     [-1, 0, +1].each do |lambda_x| 
