@@ -10,22 +10,12 @@
       if (this.className)
         return;
       this.className = turn % 2 == 0 ? "player1" : "player2";
-      if (winGame(this.className)) {
-          endGame(this.className);
-          return;
-        }
-      turn++;
-      if (turn == 9)
+      ++turn;
+      if (winGame(this.className))
+        endGame(this.className);
+      else if (turn == 9)
         endGame();
     })
-  }
-
-  function endGame(player) {
-    if (player)
-      alert(player + " gagne !");
-    else
-      alert("Ex aequo !");
-    location.reload(true);
   }
 
   for (var i = 0; i < gridSize; i++) {
@@ -41,7 +31,7 @@
           for (var y = -1; y < 2; y++) {
             var points = 0
             if (grid[i][j].className == currentPlayer)
-              points++
+              ++points;
             if (grid[i + x] != undefined && grid[i + x][j + y] != undefined && (x != y || (x == 1 && y == 1)))
               if (grid[i + x][j + y].className == currentPlayer)
                 ++points;
@@ -55,6 +45,14 @@
       }
     }
     return false;
+  }
+
+  function endGame(player) {
+    if (player)
+      alert(player + " gagne !");
+    else
+      alert("Ex aequo !");
+    location.reload(true);
   }
 
 })();
