@@ -1,9 +1,21 @@
 (function () {
   var td = document.querySelectorAll("td");
   var turn = 0;
-  var gridSize = Math.sqrt(td.length);
+  var gridSize = 3;
   var grid = [];
   var winCondition = 3;
+
+  function createGame() {
+    var table = document.querySelector("table");
+    for (var i = 0; i < gridSize; i++) {
+      var tr = table.insertRow(0);
+      for (var j = 0; j < gridSize; j++) {
+        tr.insertCell(0)
+      }
+    }
+  }
+
+  createGame();
 
   for (var i = 0; i < td.length; i++) {
     td[i].addEventListener("click", function() {
