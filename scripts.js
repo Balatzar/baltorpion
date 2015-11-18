@@ -9,7 +9,7 @@
     td[i].addEventListener("click", function() {
       if (this.className)
         return;
-      this.className = turn % 2 == 0 ? "player1" : "player2";
+      this.className = !(turn % 2) ? "player1" : "player2";
       ++turn;
       if (winGame(this.className))
         endGame(this.className);
