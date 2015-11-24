@@ -1,8 +1,6 @@
 (function () {
-  var td = document.querySelectorAll("td");
   var turn = 0;
   var gridSize = 3;
-  var grid = [];
   var winCondition = 3;
 
   function createGame() {
@@ -16,6 +14,7 @@
   }
 
   createGame();
+  var td = document.querySelectorAll("td");
 
   for (var i = 0; i < td.length; i++) {
     td[i].addEventListener("click", function() {
@@ -30,25 +29,19 @@
     })
   }
 
-  for (var i = 0; i < gridSize; i++) {
-    grid[i] = [];
-    for (var j = 0; j < gridSize; j++)
-      grid[i].push(td[j + (gridSize * i)]);
-  }
-
   function winGame(currentPlayer) {
     for (var i = 0; i < gridSize; i++) {
       for (var j = 0; j < gridSize; j++) {
         for (var x = -1; x < 2; x++) {
           for (var y = -1; y < 2; y++) {
             var points = 0
-            if (grid[i][j].className == currentPlayer)
+            if (td[i * gridSize + j].className == currentPlayer)
               ++points;
-            if (grid[i + x] != undefined && grid[i + x][j + y] != undefined && (x != y || (x == 1 && y == 1)))
-              if (grid[i + x][j + y].className == currentPlayer)
+            if (td[(i + x) * gridSize + (j + y)] != undefined && (x != y || (x == 1 && y == 1)))
+              if (td[(i + x) * gridSize + (j + y)].className == currentPlayer)
                 ++points;
-            if (grid[i + x + x] != undefined && grid[i + x + x][j + y + y] != undefined && (x != y || (x == 1 && y == 1)))
-              if (grid[i + x + x][j + y + y].className == currentPlayer)
+            if (td[(i + x + x) * gridSize + (j + y + y)] != undefined && (x != y || (x == 1 && y == 1)))
+              if (td[(i + x + x) * gridSize + (j + y + y)].className == currentPlayer)
                 ++points;
             if (points == 3)
               return true;
